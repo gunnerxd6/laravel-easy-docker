@@ -1,0 +1,10 @@
+version: '3'
+services:
+  laravel-api:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - "8000:80"
+    restart: unless-stopped
+    container_name: wonderful_app
