@@ -19,9 +19,11 @@ WORKDIR /var/www/html
 
 COPY . /var/www/html/
 
+RUN chown -R www-data:www-data /var/www
+
 COPY --from=composer /usr/bin/composer /usr/bin/composer
 
-RUN chown -R www-data:www-data /var/www
+
 RUN chmod -R 755 storage
 
 ENV  COMPOSER_ALLOW_SUPERUSER 1
