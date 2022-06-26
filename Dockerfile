@@ -13,13 +13,14 @@ RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf
 
 RUN sed -i '/<Directory \/var\/www\/>/,/<\/Directory>/ s/AllowOverride None/AllowOverride All/' /etc/apache2/apache2.conf
 RUN a2enmod rewrite
+RUN chown -R www-data:www-data /var/www
 RUN service apache2 restart
 
 WORKDIR /var/www/html
 
 COPY . /var/www/html/
 
-RUN chown -R www-data:www-data /var/www
+
 
 COPY --from=composer /usr/bin/composer /usr/bin/composer
 
